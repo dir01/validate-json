@@ -6,6 +6,7 @@ import { debug, getInput, info, setFailed } from '@actions/core';
 import { promises as fs } from 'fs';
 import * as path from 'path';
 import AjvDraft04 from 'ajv-draft-04';
+import Ajv2020 from "ajv/dist/2020"
 import Ajv from 'ajv';
 import draft6MetaSchema from 'ajv/dist/refs/json-schema-draft-06.json';
 import axios from 'axios';
@@ -42,6 +43,8 @@ function getAjv(version, options = {}) {
 		}
 		case 'draft-07':
 			return new Ajv(ajvOptions);
+		case "draft-2020-12":
+			return new Ajv2020(ajvOptions);
 		default:
 			return false;
 	}
